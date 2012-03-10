@@ -1,5 +1,6 @@
 Keppler::Application.routes.draw do
   root :to => 'landing#index'
+  match 'landing/register_email' => 'landing#register_email'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
