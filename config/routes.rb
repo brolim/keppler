@@ -4,6 +4,7 @@ Keppler::Application.routes.draw do
   match 'k_riders' => 'landing#landing'
 
   resources :usuarios, :only=>[:index, :create]
+  resources :kriders, :only=>[:index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
