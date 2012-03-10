@@ -1,3 +1,17 @@
-<div style="width:900px; margin:auto">
-  <%= image_tag 'kepler22b_planet.png' %>
+<div id="center_container" style="width:900px; margin:auto">
+  <div id="loading" style="margin:150px 0px 0px 434px; float:left">
+    <%= image_tag 'loading.gif' %>
+  </div>
+
+  <div id="landing_body" style="display:none; float:left">
+    <%= image_tag 'kepler22b_planet.png' %>
+  </div>
+
 </div>
+
+<script type="text/javascript">
+  $('#center_container img').load(function(){
+    $("#loading").hide();
+    $("#landing_body").fadeIn('slow');
+  });
+</script>
