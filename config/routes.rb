@@ -2,6 +2,7 @@ Keppler::Application.routes.draw do
   
   root :to => 'landing#landing'
   match 'k_riders' => 'landing#landing'
+  match 'venues' => 'kriders#venues'
 
   resources :usuarios, :only=>[:index, :create]
   resources :kriders, :only=>[:index]
