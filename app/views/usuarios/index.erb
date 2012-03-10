@@ -12,11 +12,11 @@
   </span>
 
   <div id="email_form" style="margin-top:20px ;display:none">
-    <%= form_tag '/landing/register_email', :method=>"post" do %>
-      <%= label_tag "email"%>
-      <%= email_field_tag :email %>
+    <%= form_for Usuario.new do |f| %>
+      <%= f.label "Email"%>
+      <%= f.email_field :email %>
 
-      <%= submit_tag "ok" %>
+      <%= f.submit "ok" %>
     <% end %>
   </div>
 </div>
