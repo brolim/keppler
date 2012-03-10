@@ -1,3 +1,9 @@
-<div id="a">
-  ooooo
+<div id="a" style="padding:15px">
+
+  <b> e-mails cadastrados</b>
+  <ol style="padding:0px 0px 0px 35px">
+    <% @usuarios.each do |u| %>
+    	<li><%= u.email %></li>
+    <% end %>
+  </ol>
 </div>
