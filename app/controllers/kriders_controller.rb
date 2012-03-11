@@ -15,7 +15,8 @@ class KridersController < ApplicationController
           				  {:name=>"Krider do Fabs", :place=>'águas claras'}]
   end
 
-  def venues_auth
+  def foursquare_auth
+    
   end
 
   def venues
@@ -33,7 +34,7 @@ class KridersController < ApplicationController
     #   &redirect_uri=http://keppler.herokuapp.com/
     #   &code=BN3KXZ1GQUSQ12KMHQFGOH0ZS2YS52B4TTQDZNBVSXV3CFZU
 
-    url = URI.parse("https://api.foursquare.com/v2/venues/search?ll=40.7,-74")
+    url = URI.parse("https://api.foursquare.com/v2/venues/search?ll=-15.754145,-47.884587&oauth_token=2USFBMQHBUBNPQ1AJYVTN2WJMKQAB4WTGXYWDQUMLVLFATIL")
     req = Net::HTTP::Get.new(url.path)
 
     res = Net::HTTP.start(url.host, url.port) do |http|
@@ -43,3 +44,7 @@ class KridersController < ApplicationController
     render :json=>res.body
   end
 end
+
+# https://foursquare.com/oauth2/authenticate?client_id=3MRAFEKRVI0SG22ITWHZCPXKSN0GUTRXHUAOIMY24O1NDGAU&response_type=code&redirect_uri=http://keppler.herokuapp.com/
+# https://foursquare.com/oauth2/access_token?client_id=3MRAFEKRVI0SG22ITWHZCPXKSN0GUTRXHUAOIMY24O1NDGAU&client_secret=ZPHGYMPOFZIFNOEYWFUJDF5Y4MI03FOPCDMGBBPGSWSPG5O2&grant_type=authorization_code&redirect_uri=http://keppler.herokuapp.com/&code=NMP5MYGCZLNGFYWVTAZPTFUSR24DRUBTKDR23QOZ5QUWU2V4
+# {"access_token":"2USFBMQHBUBNPQ1AJYVTN2WJMKQAB4WTGXYWDQUMLVLFATIL"}
