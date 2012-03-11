@@ -4,26 +4,30 @@ require 'net/http'
 
 class FoursquareController < ApplicationController
   def auth
-    client_id = "3MRAFEKRVI0SG22ITWHZCPXKSN0GUTRXHUAOIMY24O1NDGAU"
-    redirect_uri = "http://keppler.herokuapp.com/"
-
     uri = "https://foursquare.com/oauth2/authenticate"
-    uri += "?client_id=#{client_id}"
+    uri += "?client_id=#{Foursquare::CLIENT_ID}"
     uri += "&response_type=code"
-    uri += "&redirect_uri=http://keppler.herokuapp.com/"
+    uri += "&redirect_uri=#{Foursquare::REDIRECT_URI}"
 
     url = URI.parse(uri)
     req = Net::HTTP::Get.new(url.path)
 
-    res = Net::HTTP.start(url.host, url.port) do |http|
-      http.request(req)
-    end
+    res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+  end
 
-    render :json=>res.body
+  def access_token
 
   end
 
   def result
-    render :text=>"---> #{params}"
+    fs = Foursquare.new
+
+    a = "fora"
+    unless params[:code].nil?
+      a = "dentro"
+      fs.code = params[:code]
+    end
+
+    render :text=>"---- #{a} ----> code: #{fs.code} ----> params: #{params}"
   end
 end
