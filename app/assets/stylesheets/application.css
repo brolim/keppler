@@ -8,4 +8,15 @@
 
 body{
   background-color: #353a3e;
+  font-family: helvetica;
+  font-weight: bold;
+  color: white;
 }
+
+input{
+  border:0px;
+  height: 20px;
+  border-radius:5px;
+  margin-left: 5px;
+}
+

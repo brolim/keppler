@@ -4,12 +4,35 @@
   </div>
 
   <div id="landing_body" style="display:none; float:left">
-    <%= image_tag 'kepler22b_planet.png' %>
+
+    <%= image_tag 'kepler22b_planet.png', :id=>'bg', :style=>'float:left; z-index:1'%>
+    <%= image_tag 'play.png', :id=>'play', :style=>'float:left; z-index:2; margin:-360px 0px 0px 415px; cursor:pointer'%>
+    
+    <div id="video" style="display:none; float:left; margin:-500px 0px 0px 240px; width:420px; height:315px; background-color:transparent; z-index:3; border:solid 7px white; border-radius:6px">
+      <iframe id="video_youtube" width="420" height="315" src="http://www.youtube.com/embed/KGUBb1XqG-w" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div id="email_form" style="margin:-100px 0px 0px 277px; float:left">
+      <%= form_for Usuario.new do |f| %>
+        <%= f.label "Email"%>
+        <%= f.email_field :email %>
+        <%= f.submit "enviar" %>
+      <% end %>
+    </div>
+
   </div>
 
 </div>
 
 <script type="text/javascript">
+  $(function() {
+    $('#play').click(function(argument) {
+      $('#play').fadeOut('fast', function() {
+        $('#video').fadeIn('slow');
+      });
+    });
+  });
+
   $('#landing_body img').load(function(){
     $("#loading").hide();
     $("#landing_body").fadeIn('slow');
