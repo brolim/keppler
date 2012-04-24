@@ -18,6 +18,9 @@
         <%= f.email_field :email %>
         <%= f.submit "enviar" %>
       <% end %>
+
+      <div style="font-size:10px; margin:10px 0px 0px 40px">
+      <%= 'Obrigado por deixar seu email, entraremos em contato!' if params['obrigado']=='k_rider' %>
     </div>
 
   </div>

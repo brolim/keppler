@@ -6,6 +6,6 @@ class UsuariosController < ApplicationController
 
   def create
     Usuario.new(:email=>params[:usuario][:email]).save! unless params[:usuario][:email].nil?
-    redirect_to k_riders_path
+    redirect_to root_path(:obrigado=>'k_rider')
   end
 end

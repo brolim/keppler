@@ -5,7 +5,9 @@ Keppler::Application.routes.draw do
   match 'foursquare/auth' => 'foursquare#auth'
   match 'foursquare/result' => 'foursquare#result'
 
-  resources :usuarios, :only=>[:index, :create]
+  match 'abcdefghijlmnopqrstuvxz/c/u' => 'usuarios#index'
+
+  resources :usuarios, :only=>[:create]
   resources :kriders, :only=>[:index]
 
   # The priority is based upon order of creation:
