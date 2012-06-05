@@ -9,6 +9,7 @@ gem 'therubyracer-heroku'
 gem 'coffeebeans'
 gem 'awesome_print'
 gem 'factory_girl'
+gem 'geocoder'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"

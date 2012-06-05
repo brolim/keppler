@@ -1,15 +1,12 @@
 Keppler::Application.routes.draw do
   
   root :to => 'landing#landing'
-  match 'k_riders' => 'landing#landing'
-  match 'foursquare/auth' => 'foursquare#auth'
-  match 'foursquare/result' => 'foursquare#result'
 
   match 'abcdefghijlmnopqrstuvxz/c/u' => 'usuarios#index'
-
   resources :usuarios, :only=>[:create]
 
   resources :ktrippers, :only=>[:index]
+  resources :places, :only=>[:index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
