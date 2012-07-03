@@ -1,3 +1,6 @@
+=== inbox
+	- habilitar git pra mandar email em um push
+
 === pré-alfa:
 	- pickup
 	- drop

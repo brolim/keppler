@@ -3,10 +3,13 @@ Keppler::Application.routes.draw do
   root :to => 'landing#landing'
 
   match 'abcdefghijlmnopqrstuvxz/c/u' => 'usuarios#index'
-  resources :usuarios, :only=>[:create]
+  resources :interesteds, :only=>[:create]
 
   resources :ktrippers, :only=>[:index]
   resources :places, :only=>[:index]
+  resources :users do
+    
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

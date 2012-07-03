@@ -1,7 +1,4 @@
-class Usuario
+class Interested
   include Mongoid::Document
-
   field :email, :default=>nil
-
-  embeds_one :foursquare
 end
