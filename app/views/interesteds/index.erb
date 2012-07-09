@@ -1,22 +1,10 @@
-<div id="a" style="padding:15px; color:white">
+<div style="padding:15px; color:white">
 
   <b> e-mails cadastrados</b>
   <ol style="padding:0px 0px 0px 35px">
-    <% @usuarios.each do |u| %>
+    <% @interesteds.each do |u| %>
     	<li><%= u.email %></li>
     <% end %>
   </ol>
-
-  <span style="cursor:pointer; border:solid white 1px; padding:2px;" onclick="$('#email_form').show()">
-    Massa, quero deixar meu email!
-  </span>
-
-  <div id="email_form" style="margin-top:20px ;display:none">
-    <%= form_for Usuario.new do |f| %>
-      <%= f.label "Email"%>
-      <%= f.email_field :email %>
-
-      <%= f.submit "ok" %>
-    <% end %>
-  </div>
+  
 </div>

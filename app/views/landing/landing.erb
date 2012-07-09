@@ -8,14 +8,14 @@
     <div id="email_form" style="margin:30px 0px 0px 50px; float:left">
       <%= image_tag '/assets/landing/neon.png', :style=>"float:left" %>
       
+      <div style="font-size:12px; margin:-15px 0px 0px 0px; float:left">
+        <%= 'Obrigado por deixar seu email, entraremos em contato!' if params['obrigado']=='k_rider' %>
+      </div>
       <%= form_for(Interested.new) do |f| %>
-        <%= f.email_field :email %>
+        <%= f.email_field :email, :style=>"padding-left:5px" %>
         <%= f.submit "enviar" %>
       <% end %>
 
-      <div style="font-size:10px; margin:10px 0px 0px 40px">
-        <%= 'Obrigado por deixar seu email, entraremos em contato!' if params['obrigado']=='k_rider' %>
-      </div>
     </div>
 
 

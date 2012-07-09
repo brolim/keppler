@@ -2,7 +2,7 @@ Keppler::Application.routes.draw do
   
   root :to => 'landing#landing'
 
-  match 'abcdefghijlmnopqrstuvxz/c/u' => 'usuarios#index'
+  match 'abcdefghijlmnopqrstuvxz/c/u' => 'interesteds#index'
   resources :interesteds, :only=>[:create]
 
   resources :ktrippers, :only=>[:index]
