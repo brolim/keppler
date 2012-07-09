@@ -20,7 +20,12 @@ input{
   margin-left: 5px;
 }
 
-#right_arrow{
+#landing_body form{
+  float:left;
+  margin:24px 0px 0px 10px;
+}
+
+/*#right_arrow{
   width: 0px;
   height: 0px;
   border-top: 20px solid transparent;
@@ -37,4 +42,4 @@ input{
   border-right: 40px solid white;
   cursor:pointer;
 }
-
+*/

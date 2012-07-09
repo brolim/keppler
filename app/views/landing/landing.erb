@@ -1,41 +1,48 @@
 <div id="center_container" style="width:900px; margin:auto">
   <div id="loading" style="margin:150px 0px 0px 434px; float:left">
-    <%= image_tag 'loading.gif' %>
+    <%= image_tag '/assets/landing/loading.gif' %>
   </div>
 
-  <div id="landing_body" style="display:none; float:left">
+  <div id="landing_body" style="display:none; float:left; background:url(/assets/landing/background.jpg); width:900px; height:675px">
 
-    <%= image_tag 'kepler22b_planet.png', :id=>'bg', :style=>'float:left; z-index:1'%>
-    <!--
-    <%= image_tag 'play.png', :id=>'play', :style=>'float:left; z-index:2; margin:-360px 0px 0px 415px; cursor:pointer'%>
-    -->
-
-    
-    <div id="comics" style="margin:-474px 0px 0px 138px; float:left">
-
-      <div id="left_arrow" style="margin:120px 45px 0px 0px; float:left"></div>
+    <div id="email_form" style="margin:30px 0px 0px 50px; float:left">
+      <%= image_tag '/assets/landing/neon.png', :style=>"float:left" %>
       
-      <div id="comic_frame" style="float:left; width:466px; height:276px; background-color:transparent; z-index:3; border:solid 7px white; border-radius:6px">
-        <div id="image_wrapper" styl="float:left; width:466px">
-          <%= image_tag 'comics/1.jpg', :style=>'float:left; z-index:1'%>
-        </div>
-      </div>
-
-      <div id="right_arrow" style="margin:120px 0px 0px 45px; float:right"></div>
-    </div>
-
-    
-
-    <div id="email_form" style="margin:-100px 0px 0px 277px; float:left">
-      <%= form_for Interested.new do |f| %>
-        <%= f.label "Email"%>
+      <%= form_for(Interested.new) do |f| %>
         <%= f.email_field :email %>
         <%= f.submit "enviar" %>
       <% end %>
 
       <div style="font-size:10px; margin:10px 0px 0px 40px">
-      <%= 'Obrigado por deixar seu email, entraremos em contato!' if params['obrigado']=='k_rider' %>
+        <%= 'Obrigado por deixar seu email, entraremos em contato!' if params['obrigado']=='k_rider' %>
+      </div>
     </div>
+
+
+
+    <div id="comics" style="margin:-20px 0px 0px 144px; float:left">
+
+      <div id="left_arrow" style="margin:120px 0px 0px 22px; position:absolute;">
+        <%= image_tag '/assets/landing/left_arrow.png', :style=>'cursor:pointer' %>
+      </div>
+      
+      <div id="comic_frame" style="float:left; width:615px; height:416px; background: url(/assets/landing/comics_frame.png);">
+        <div id="image_wrapper" styl="float:left; width:466px">
+          <%= image_tag 'comics/1.jpg', :style=>'float:left; z-index:1; margin:15px 0px 0px 71px; border-radius: 5px;'%>
+        </div>
+      </div>
+
+      <div id="right_arrow" style="margin:120px 0px 0px 555px; position:absolute;">
+        <%= image_tag '/assets/landing/right_arrow.png', :style=>'cursor:pointer' %>
+      </div>
+    </div>
+
+
+    <br style="clear:both">
+    <div id="audience" style="float:left; margin-top: -100px;">
+        <%= image_tag '/assets/landing/space_ships.png' %>
+    </div>
+
 
   </div>
 
@@ -43,20 +50,22 @@
 
 <script type="text/javascript">
 
-  pics = ['/assets/comics/1.jpg', '/assets/comics/2.jpg', '/assets/comics/3.jpg']
-  current_pic = 0;
+  total_pics = 12
+  pics_path = '/assets/comics/'
+  current_pic = 1;
 
   function slide_picture(direction){
     var old_current_pic = current_pic;
 
-    if(direction=="forward" && current_pic!=(pics.length-1))
-      current_pic = (current_pic+1)
-    else if(direction=="backward" && current_pic!=0)
-      current_pic = (current_pic-1) % pics.length;
+    if(direction=="forward" && current_pic<total_pics)
+      current_pic = current_pic + 1;
+    else if(direction=="backward" && current_pic>0)
+      current_pic = current_pic - 1;
     
     if(old_current_pic!=current_pic){
       $('#comics #image_wrapper').animate({width:'hide'}, function(){
-        $('#comics #image_wrapper img').attr('src', pics[current_pic]);
+        var picture = pics_path + current_pic + '.jpg';
+        $('#comics #image_wrapper img').attr('src', picture);
         $('#comics #image_wrapper').width(0);
         $('#comics #image_wrapper').show()
         $('#comics #image_wrapper').animate({width:'466px'})

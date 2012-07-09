@@ -1,0 +1,4 @@
+Cores:
+Fundo: #25282c
+
+Letras verde: #dfffbc
