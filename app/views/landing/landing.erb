@@ -26,9 +26,16 @@
         <%= image_tag '/assets/landing/left_arrow.png', :style=>'cursor:pointer' %>
       </div>
       
-      <div id="comic_frame" style="float:left; width:615px; height:416px; background: url(/assets/landing/comics_frame.png);">
-        <div id="image_wrapper" styl="float:left; width:466px">
-          <%= image_tag 'comics/1.jpg', :style=>'float:left; z-index:1; margin:15px 0px 0px 71px; border-radius: 5px;'%>
+      <div id="comic_frame" style="float:left; width:615px; height:416px; background: url(/assets/landing/comics_frame.png); z-index:-2;">
+        <div id="loading_wrapper" style="float:left; margin:148px 0px 0px 290px; position:absolute; display:none">
+          <%= image_tag '/assets/landing/loading.gif' %> 
+          <div style="font-size:10px; margin:0px 0px 0px -12px">
+            carregando...
+          </div>
+        </div>
+
+        <div id="image_wrapper" style="float:left; width:476px">
+          <%= image_tag 'comics/1.jpg', :style=>'float:left; border-radius: 5px; margin:15px 0px 0px 71px;'%>
         </div>
       </div>
 
@@ -64,11 +71,14 @@
     
     if(old_current_pic!=current_pic){
       $('#comics #image_wrapper').animate({width:'hide'}, function(){
-        var picture = pics_path + current_pic + '.jpg';
-        $('#comics #image_wrapper img').attr('src', picture);
         $('#comics #image_wrapper').width(0);
-        $('#comics #image_wrapper').show()
-        $('#comics #image_wrapper').animate({width:'466px'})
+        $('#comics #loading_wrapper').show();
+        var picture = pics_path + current_pic + '.jpg';
+        $('#comics #image_wrapper img').attr('src', picture).load(function() {
+          $('#comics #loading_wrapper').hide();
+          $('#comics #image_wrapper').show()
+          $('#comics #image_wrapper').animate({width:'476px'})
+        });
       });
     }
   }
@@ -83,7 +93,7 @@
     });
   });
 
-  $('#landing_body img').load(function(){
+  $('#landing_body #audience img').load(function(){
     $("#loading").hide();
     $("#landing_body").fadeIn('slow');
   });
