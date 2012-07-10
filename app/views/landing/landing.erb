@@ -34,6 +34,10 @@
           </div>
         </div>
 
+        <div id="subtitle" style="float:left; margin:24px 0px 0px 80px; position:absolute; font-size:16px;">
+        </div>
+
+
         <div id="image_wrapper" style="float:left; width:476px">
           <%= image_tag 'comics/1.jpg', :style=>'float:left; border-radius: 5px; margin:15px 0px 0px 71px;'%>
         </div>
@@ -59,6 +63,20 @@
 
   total_pics = 12
   pics_path = '/assets/comics/'
+
+  subtitles = ["Em 5 de setembro de 1977",
+               "ocorre o lançamento da sonda Voyager1",
+               "Foi quando a sonda iniciou sua viagem...",
+               "e deu tudo certo! Uhuuul!",
+               "Depois de 33 anos, em 13 de dezembro de 2010",
+               "a Voyager1 sai do alcance dos ventos solares! Uhuuul(2)!",
+               "Mas sem os ventos solares, extra-terrestres detectam a Voyager1",
+               "E dentro dela econtram músicas, fotos e artefatos da Terra...",
+               "Então a galera de Keppler-22b decide ir pra Terra...",
+               "pra fazer um acordo...",
+               "Keplerianos só podem andar pela Terra acompanhados por humanos!",
+               "Topa ajudar?"];
+
   current_pic = 1;
 
   function slide_picture(direction){
@@ -70,6 +88,7 @@
       current_pic = current_pic - 1;
     
     if(old_current_pic!=current_pic){
+      $('#comics #subtitle').html('');
       $('#comics #image_wrapper').animate({width:'hide'}, function(){
         $('#comics #image_wrapper').width(0);
         $('#comics #loading_wrapper').show();
@@ -77,7 +96,9 @@
         $('#comics #image_wrapper img').attr('src', picture).load(function() {
           $('#comics #loading_wrapper').hide();
           $('#comics #image_wrapper').show()
-          $('#comics #image_wrapper').animate({width:'476px'})
+          $('#comics #image_wrapper').animate({width:'476px'}, function() {
+            $('#subtitle').html(subtitles[current_pic-1]);
+          });
         });
       });
     }
@@ -91,6 +112,8 @@
     $('#left_arrow').click(function() {
       slide_picture('backward');
     });
+
+    $('#comics #subtitle').html(subtitles[0]);
   });
 
   $('#landing_body #audience img').load(function(){

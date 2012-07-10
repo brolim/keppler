@@ -39,7 +39,24 @@ Eles estão apenas aguardando você para conhecer nosso planeta. Aliste-se já!
 ===============================================================
 
 ----------------------------------
-cena1: lançamento voyager
+cena1: estação de lançamento da NASA
+----------------------------------
+  ideia
+    Mostrar a NASA no dia 5 de setembro de 1977
+
+  imagem
+    estação da NASA por fora
+    aparece na imagem a data "5 de setembro de 1977"
+
+  locução
+    Em 5 de setembro de 1977, na NASA...
+
+  texto
+    5 de setembro de 1977
+
+
+----------------------------------
+cena2: lançamento voyager
 ----------------------------------
   ideia
     No dia 5 de setembro de 1977 uma das missões mais ousadas da ciência teve início. O lançamento da sonda Voyager 1.
@@ -52,9 +69,13 @@ cena1: lançamento voyager
 
   locução
     Hoje a comunidade científica comemora o lançamento da Voyager1
+
+  texto
+    Lançamento da sonda Voyager1
+
     
 ----------------------------------
-cena2: voyager passando pela câmera no espaço
+cena3: voyager passando pela câmera no espaço
 ----------------------------------
   ideia
     saída da voyager da terra
@@ -62,8 +83,44 @@ cena2: voyager passando pela câmera no espaço
   imagem
     voyager no espaço saindo da terra vindo em direção à câmera, que filma terra
 
+  texto
+    A sonda inicia sua viagem...
+
+
 ----------------------------------
-cena3: sala da nasa 33 anos depois
+cena4: comemoração do lançamento bem sucedido
+----------------------------------
+  ideia
+    comemoração dos cientistas
+
+  imagem
+    sala de controle com os caras comemorando
+
+  texto
+    Uhuuul! Tudo certo!
+
+
+
+----------------------------------
+cena5: estação de lançamento da NASA
+----------------------------------
+  ideia
+    Mostrar a NASA no dia 13 de dezembro de 2010
+
+  imagem
+    estação da NASA por fora
+    aparece na imagem a data "13 de dezembro de 2010"
+
+  locução
+    Em 13 de dezembro de 2010, na NASA...
+
+  texto
+    13 de dezembro de 2010
+
+
+
+----------------------------------
+cena6: sala da nasa 33 anos depois
 ----------------------------------
   ideia
     o tempo passou
@@ -78,9 +135,13 @@ cena3: sala da nasa 33 anos depois
   locução
     33 anos depois a sonda sai do alcance dos ventos solares
 
+  texto
+    33 anos depois a sonda sai do alcance dos ventos solares
+
+
 
 ----------------------------------
-cena4: disco voador acha a voyager
+cena7: disco voador acha a voyager
 ----------------------------------
   ideia
     Em  13 de dezembro de 2010, enquanto comemoravam o fato da sonda Voyager 1 sair do alcance dos ventos solares, ocorria o primeiro contato da humanidade com uma forma de vida extra terrestre. Sem a influência dos ventos solares, habitantes do planeta Kepler 22b conseguiram detectar a Voyager e, com ela, encontraram o Disco Dourado contendo diversas informações sobre a Terra.
@@ -92,9 +153,12 @@ cena4: disco voador acha a voyager
   locução
     Mal sabiam os cientistas que sem a influência dos ventos solares, extra-terrestres detectaram a sonda.
 
+  texto
+    Sem os ventos solares, extra-terrestres detectam a Voyager1
+
 
 ----------------------------------
-cena5: disco dourado
+cena8: disco dourado
 ----------------------------------
   ideia
     Eles decifraram o artefato.(e encontraram nele imagens belíssimas, vozes engraçadas e músicas envolventes.) E os Keplerianos, bastante curiosos, decidiram conhecer a Terra.
@@ -106,9 +170,12 @@ cena5: disco dourado
   locução
     Dentro dela encontraram o disco dourado, com informações sobre a terra.
 
+  texto
+    Dentro da Voyager1 haviam músicas, fotos e coisas da Terra...
+
 
 ----------------------------------
-cena6: Decisão de ir para a Terra
+cena9: Decisão de ir para a Terra
 ----------------------------------
   ideia
     Usando a Voyager 1, em 20 de dezembro de 2010, fizeram o primeiro contato com a NASA. 
@@ -120,8 +187,11 @@ cena6: Decisão de ir para a Terra
   locução
     Maravilhados com o que encontraram vieram pra cá.
 
+  texto
+    A galera de Keppler-22b decide ir pra Terra...
+
 ----------------------------------
-cena7: Chegada secreta na Terra
+cena10: Chegada secreta na Terra
 ----------------------------------
   ideia
    Mas a NASA impediu seu desembarque no planeta. Mas tudo isso foi abafado com o anúncio da descoberta do seu planeta de origem, Kepler 22b(http://www.nasa.gov/mission_pages/kepler/news/kepscicon-briefing.html).
