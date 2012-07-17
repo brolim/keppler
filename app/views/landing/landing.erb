@@ -27,20 +27,31 @@
       </div>
       
       <div id="comic_frame" style="float:left; width:615px; height:416px; background: url(/assets/landing/comics_frame.png); z-index:-2;">
-        <div id="loading_wrapper" style="float:left; margin:148px 0px 0px 290px; position:absolute; display:none">
-          <%= image_tag '/assets/landing/loading.gif' %> 
-          <div style="font-size:10px; margin:0px 0px 0px -12px">
-            carregando...
-          </div>
-        </div>
 
-        <div id="subtitle" style="float:left; margin:24px 0px 0px 80px; position:absolute; font-size:16px; color: yellow;text-shadow: -1px 0 black;">
+        <div id="subtitle">
         </div>
 
 
         <div id="image_wrapper" style="float:left; width:476px">
-          <%= image_tag 'comics/1.jpg', :style=>'float:left; border-radius: 5px; margin:15px 0px 0px 71px;'%>
+          <%= image_tag 'comics/1.jpg',  :id=>'pic1',  :class=>'picture' %>
+          <%= image_tag 'comics/2.jpg',  :id=>'pic2',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/3.jpg',  :id=>'pic3',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/4.jpg',  :id=>'pic4',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/5.jpg',  :id=>'pic5',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/6.jpg',  :id=>'pic6',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/7.jpg',  :id=>'pic7',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/8.jpg',  :id=>'pic8',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/9.jpg',  :id=>'pic9',  :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/10.jpg', :id=>'pic10', :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/11.jpg', :id=>'pic11', :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/12.jpg', :id=>'pic12', :class=>'picture', :style=>'display:none' %>
+          <%= image_tag 'comics/13.jpg', :id=>'pic13', :class=>'picture', :style=>'display:none' %>
         </div>
+      </div>
+
+      <div id="play_pause_button" style="margin:280px 0px 0px 286px; position:absolute;">
+        <%= image_tag '/assets/landing/play_pause.png', :style=>'cursor:pointer; max-width:50px' %>
+        <div id="play_pause_status" style="font-size:12px; margin:-35px 0px 0px 55px">paused</div>
       </div>
 
       <div id="right_arrow" style="margin:120px 0px 0px 555px; position:absolute;">
@@ -61,9 +72,6 @@
 
 <script type="text/javascript">
 
-  total_pics = 13
-  pics_path = '/assets/comics/'
-
   subtitles = ["Em 5 de setembro de 1977",
                "ocorre o lançamento da sonda Voyager1",
                "Foi quando a sonda iniciou sua viagem...",
@@ -76,9 +84,12 @@
                "pra fazer um acordo...",
                "Keplerianos só podem andar pela Terra <br>acompanhados por humanos!",
                "Topa ajudar?",
-               "Tudo que você vau precisar é o seu celular<br>e levá-los pelo nosso planeta."];
+               "Tudo que você precisa é usar o seu celular<br>pra ajudá-los a conhecer nosso planeta!!"];
 
+  total_pics = 13
   current_pic = 1;
+  play_mode_on = false;
+  interval = 6000;
 
   function slide_picture(direction){
     var old_current_pic = current_pic;
@@ -89,29 +100,43 @@
       current_pic = current_pic - 1;
     
     if(old_current_pic!=current_pic){
+
       $('#comics #subtitle').html('');
-      $('#comics #image_wrapper').animate({width:'hide'}, function(){
-        $('#comics #image_wrapper').width(0);
-        $('#comics #loading_wrapper').show();
-        var picture = pics_path + current_pic + '.jpg';
-        $('#comics #image_wrapper img').attr('src', picture).load(function() {
-          $('#comics #loading_wrapper').hide();
-          $('#comics #image_wrapper').show()
-          $('#comics #image_wrapper').animate({width:'476px'}, function() {
-            $('#subtitle').html(subtitles[current_pic-1]);
-          });
+      $('#comics #image_wrapper').animate({width:'0px'}, function(){
+        $('#comics #image_wrapper').show();
+        $('#comics #image_wrapper .picture').hide();
+        var id = 'pic' + current_pic;
+        $('#comics #image_wrapper #'+id).show();
+        $('#comics #image_wrapper').animate({width:'476px'}, function() {
+          $('#subtitle').html(subtitles[current_pic-1]);
         });
       });
+    }
+
+    if(play_mode_on){
+      if(current_pic<total_pics)
+        play();
+      else
+        pause();
     }
   }
 
   $(function() {
     $('#right_arrow').click(function() {
-      slide_picture('forward');
+      slide_step('forward');
     });
 
     $('#left_arrow').click(function() {
-      slide_picture('backward');
+      slide_step('backward');
+    });
+
+    $('#play_pause_button').click(function() {
+      if(play_mode_on){
+        pause();
+      }
+      else{
+        play();
+      }
     });
 
     $('#comics #subtitle').html(subtitles[0]);
@@ -121,7 +146,40 @@
     $("#loading").hide();
     $("#landing_body").fadeIn('slow');
   });
+
+
+  function play() {
+    window.setTimeout('play_step()', interval);
+    play_mode_on = true;
+    $('#play_pause_status').html('playing...');
+  }
+
+  function play_step() {
+    if(play_mode_on){
+      slide_picture('forward');
+    }
+  }
+
+  function slide_step(direction) {
+    if(play_mode_on){
+      pause();
+      slide_picture(direction);
+      window.setTimeout('play()', interval);
+    }
+    else{
+      slide_picture(direction);
+    }
+  }
+
+  function pause() {
+    play_mode_on = false;
+    $('#play_pause_status').html('paused');
+  }
+
 </script>
+
+
+
 
 <script type="text/javascript">
 

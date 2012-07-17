@@ -25,6 +25,21 @@ input{
   margin:24px 0px 0px 10px;
 }
 
+#subtitle{
+  float:left; 
+  margin:24px 0px 0px 80px; 
+  position:absolute; 
+  font-size:16px; 
+  color: yellow;
+  text-shadow: -2px 0 black;
+}
+
+.picture{
+  float:left; 
+  border-radius: 5px; 
+  margin:15px 0px 0px 71px;
+}
+
 /*#right_arrow{
   width: 0px;
   height: 0px;
