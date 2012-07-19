@@ -119,23 +119,30 @@
       else
         pause();
     }
+    if(current_pic == total_pics){
+      _gaq.push(['_trackEvent', 'end_video', 'end_video','end_video']);
+    }
   }
 
   $(function() {
     $('#right_arrow').click(function() {
       slide_step('forward');
+      _gaq.push(['_trackEvent', 'navigate', 'forward',current_pic]);
     });
 
     $('#left_arrow').click(function() {
       slide_step('backward');
+      _gaq.push(['_trackEvent', 'navigate', 'backward',current_pic]);
     });
 
     $('#play_pause_button').click(function() {
       if(play_mode_on){
         pause();
+        _gaq.push(['_trackEvent', 'navigate', 'pause','pause']);
       }
       else{
         play();
+        _gaq.push(['_trackEvent', 'navigate', 'play','play']);
       }
     });
 
