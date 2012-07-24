@@ -10,4 +10,7 @@ FactoryGirl.define do
     name "place's name"
   end
 
+  factory :user do
+    name "user's name"
+  end
 end

@@ -5,5 +5,5 @@ class User
 
   field :email, :default=>nil
   field :name, :default=>nil
-  has_and_belongs_to_many :ktrippers
+  has_one :ktripper
 end

@@ -26,5 +26,44 @@ describe KtrippersController do
     end
 
   end
+
+  describe 'PUT drop' do
+    
+    it 'works' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa')
+      put :drop, :id=>ktripper.id, :where => place
+      response.should be_success
+    end
+
+    it 'places tripper in the informed location' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa')
+      put :drop, :id=>ktripper.id, :where => place
+      ktripper.reload
+      place.id.should == ktripper.place.id
+    end
+
+    it 'removes user from ktripper' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user))
+      put :drop, :id=>ktripper.id, :where => place
+      ktripper.reload
+      ktripper.user.should be_nil
+    end
+
+    xit 'doesnt fail for an invalid place'
+    xit 'doesnt fail for an invalid user'
+
+  end
+  
+  describe 'PUT pickup' do
+
+    xit 'works' do
+      put :pickup 
+      response.should be_success
+    end
+
+  end
   
 end

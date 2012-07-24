@@ -5,11 +5,15 @@ Keppler::Application.routes.draw do
   match 'abcdefghijlmnopqrstuvxz/c/u' => 'interesteds#index'
   resources :interesteds, :only=>[:create]
 
-  resources :ktrippers, :only=>[:index]
-  resources :places, :only=>[:index]
-  resources :users do
-    
+  resources :ktrippers, :only=>[:index] do
+    member do
+      get :drop
+    end
   end
+  resources :places, :only=>[:index]
+  # resources :users do
+    
+  # end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

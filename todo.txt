@@ -4,3 +4,70 @@
 === pré-alfa:
 	- pickup
 	- drop
+
+
+
+**** URLS ****
+
+* http://keppler.herokuapp.com/kriders.json
+	- Method : GET
+	- Params :
+		- Latitude e longitude em float
+		- ex: {'latitude':12.34, 'longitude':56.78}
+	- Response:
+		- Array com os dados do tripper
+		- ex: [{ _id:1, img:'http://my.img/alien.jpg', name:'João Ajax', place:'Giraffas'}]
+
+* http://keppler.herokuapp.com/login.json
+	- Method : POST
+	- Params :
+		- Dados de acesso do usuário
+		- Ex: {'user' : 'joao@dasilva.com','pass' : '123456'}
+	- Response :
+		- Dados do usuário (e informação se foi com sucesso)
+		- Ex: {
+				'success':'OK',
+				'name' : 'Bruce Wayne',
+				'email' : 'bruce@wayne.com',
+				'id' : 1024
+				}
+
+* http://keppler.herokuapp.com/pickup.json
+	- Method : POST
+	- Params : 
+		- Dados do usuário que está pegando e do tripper sendo pego.
+		- Ex: {'user_id' : 1,'tripper_id' : 24}
+	- Response:
+		- Se foi bem sucedido
+		- Ex: {success : true}
+
+* http://keppler.herokuapp.com/list_places.json
+	- Method : POST
+	- Params :
+		- Latitude e longitude em float
+		- ex: {'latitude':12.34, 'longitude':56.78}
+	- Response:
+		- Locais próximos do jogador (para deixar o tripper)
+		- [
+		      {'id':'vn_0001', 'name':'Lago Norte'},
+		      {'id':'vn_0002', 'name':'Asa Norte'}
+		  ]
+
+* http://keppler.herokuapp.com/drop.json
+	- Method : POST
+	- Params :
+		- identificação do tripper e da venue
+		- ex: {'tripper_id':69, 'venue_id':'vn_0002'}
+
+* http://keppler.herokuapp.com/tripper_history.json
+	- Method : POST
+	- Params : 
+		- Identificador do tripper
+		- Ex: {'tripper_id':69}
+	- Response :
+		- Locais que o tripper passou e tempo que passou (em dias)
+		- [
+		      {'name':'Intacto','elapsed_days':0},
+		      {'name':'UnB','elapsed_days':1},
+		      {'name':'Lago Norte','elapsed_days':3},
+	      ]

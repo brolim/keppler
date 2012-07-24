@@ -14,4 +14,12 @@ class KtrippersController < ApplicationController
     render :json=>ktrippers.to_json
   end
 
+  def drop
+    ktripper = Ktripper.find params[:id]
+    where = Place.find params[:where]
+    ktripper.place = where
+    ktripper.user = nil
+    ktripper.save
+    render :json=>{}
+  end
 end
