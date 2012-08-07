@@ -15,11 +15,26 @@ class KtrippersController < ApplicationController
   end
 
   def drop
-    ktripper = Ktripper.find params[:id]
-    where = Place.find params[:where]
-    ktripper.place = where
-    ktripper.user = nil
-    ktripper.save
+    begin
+      ktripper = Ktripper.find params[:id]
+      where = Place.find params[:where]
+      ktripper.place = where
+      ktripper.user = nil
+      ktripper.save
+    rescue
+    end
+    render :json=>{}
+  end
+
+  def pickup
+    begin
+      ktripper = Ktripper.find params[:id]
+      user = User.find params[:user]
+      ktripper.user = user
+      ktripper.place = nil
+      ktripper.save
+    rescue
+    end
     render :json=>{}
   end
 end

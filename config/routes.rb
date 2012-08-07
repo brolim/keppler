@@ -8,6 +8,7 @@ Keppler::Application.routes.draw do
   resources :ktrippers, :only=>[:index] do
     member do
       get :drop
+      get :pickup
     end
   end
   resources :places, :only=>[:index]
