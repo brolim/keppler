@@ -18,20 +18,6 @@
 		- Array com os dados do tripper
 		- ex: [{ _id:1, img:'http://my.img/alien.jpg', name:'João Ajax', place:'Giraffas'}]
 
-* http://keppler.herokuapp.com/login.json
-	- Method : POST
-	- Params :
-		- Dados de acesso do usuário
-		- Ex: {'user' : 'joao@dasilva.com','pass' : '123456'}
-	- Response :
-		- Dados do usuário (e informação se foi com sucesso)
-		- Ex: {
-				'success':'OK',
-				'name' : 'Bruce Wayne',
-				'email' : 'bruce@wayne.com',
-				'id' : 1024
-				}
-
 * http://keppler.herokuapp.com/pickup.json
 	- Method : POST
 	- Params : 
@@ -40,6 +26,26 @@
 	- Response:
 		- Se foi bem sucedido
 		- Ex: {success : true}
+
+* http://keppler.herokuapp.com/drop.json
+	- Method : POST
+	- Params :
+		- identificação do tripper e da venue
+		- ex: {'tripper_id':69, 'venue_id':'vn_0002'}
+
+* http://keppler.herokuapp.com/login.json
+	- Method : POST
+	- Params :
+		- Dados de acesso do usuário
+		- Ex: {'user' : 'joao@dasilva.com','pass' : '123456'}
+	- Response :
+		- Dados do usuário (e informação se foi com sucesso)
+		- Ex: {
+				'success':'true',
+				'name' : 'Bruce Wayne',
+				'email' : 'bruce@wayne.com',
+				'id' : 1024
+				}
 
 * http://keppler.herokuapp.com/list_places.json
 	- Method : POST
@@ -52,12 +58,6 @@
 		      {'id':'vn_0001', 'name':'Lago Norte'},
 		      {'id':'vn_0002', 'name':'Asa Norte'}
 		  ]
-
-* http://keppler.herokuapp.com/drop.json
-	- Method : POST
-	- Params :
-		- identificação do tripper e da venue
-		- ex: {'tripper_id':69, 'venue_id':'vn_0002'}
 
 * http://keppler.herokuapp.com/tripper_history.json
 	- Method : POST

@@ -61,6 +61,8 @@ describe KtrippersController do
       ktripper.user.should_not be_nil
     end
 
+    xit 'validates place against the users location'
+
   end
   
   describe 'PUT pickup' do
@@ -98,6 +100,10 @@ describe KtrippersController do
       ktripper.reload
       ktripper.user.should be_nil
     end
+
+    xit 'returns success on json'
+
+    xit 'validates users location against the place'
 
   end
   

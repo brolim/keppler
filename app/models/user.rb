@@ -5,5 +5,6 @@ class User
 
   field :email, :default=>nil
   field :name, :default=>nil
+  field :pass, :default=>nil
   has_one :ktripper
 end

@@ -11,10 +11,15 @@ Keppler::Application.routes.draw do
       get :pickup
     end
   end
+
   resources :places, :only=>[:index]
-  # resources :users do
-    
-  # end
+
+  # match '/signin' => 'users#signin'
+  resources :users do
+    collection do
+      put :signin
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
