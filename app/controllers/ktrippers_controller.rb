@@ -19,6 +19,7 @@ class KtrippersController < ApplicationController
       ktripper = Ktripper.find params[:id]
       where = Place.find params[:where]
       ktripper.place = where
+      ktripper.histories << History.new(:place=>where)
       ktripper.user = nil
       ktripper.save
     rescue
@@ -36,5 +37,14 @@ class KtrippersController < ApplicationController
     rescue
     end
     render :json=>{}
+  end
+
+  def history
+    ktripper = Ktripper.find params[:id]
+    list = []
+    ktripper.histories.each do |h|
+      list << {'name'=>h.place.name}
+    end
+    render :json=>list
   end
 end

@@ -61,6 +61,7 @@ describe KtrippersController do
       ktripper.user.should_not be_nil
     end
 
+    xit 'rejects a drop on a already dropped tripper'
     xit 'validates place against the users location'
 
   end
@@ -104,6 +105,38 @@ describe KtrippersController do
     xit 'returns success on json'
 
     xit 'validates users location against the place'
+
+  end
+
+  describe 'GET History' do
+
+    it 'works' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user))
+      put :drop, :id=>ktripper.id, :where => place.id
+      get :history , :id => ktripper.id
+      response.should be_success
+    end
+
+    it 'returns last place dropped' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user))
+      put :drop, :id=>ktripper.id, :where => place.id
+      get :history , :id => ktripper.id
+      json = ActiveSupport::JSON.decode(response.body)
+      json.should == [{'name'=>place.name}]
+    end
+
+    it 'returns all places dropped' do
+      place1 = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      place2 = Factory.create(:place, :name=>'outro lugar legalzão', :coordinates=>[11,13])
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user))
+      put :drop, :id=>ktripper.id, :where => place1.id
+      put :drop, :id=>ktripper.id, :where => place2.id
+      get :history , :id => ktripper.id
+      json = ActiveSupport::JSON.decode(response.body)
+      json.should == [{'name'=>place1.name},{'name'=>place2.name}]
+    end
 
   end
   

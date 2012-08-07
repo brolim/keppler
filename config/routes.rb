@@ -9,6 +9,7 @@ Keppler::Application.routes.draw do
     member do
       get :drop
       get :pickup
+      get :history
     end
   end
 

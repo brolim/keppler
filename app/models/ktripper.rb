@@ -5,6 +5,7 @@ class Ktripper
   field :name, :default=>nil
   belongs_to :place
   belongs_to :user
+  embeds_many :histories
   
   scope :who_are_in, ->(place_id) {  where('place_id'=>place_id) }
 end
