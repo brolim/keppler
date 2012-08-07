@@ -13,4 +13,7 @@ FactoryGirl.define do
   factory :user do
     name "user's name"
   end
+
+  factory :visit do
+  end
 end
