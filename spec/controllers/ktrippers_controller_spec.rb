@@ -136,8 +136,6 @@ describe KtrippersController do
       json.should == [{'name'=>place1.name},{'name'=>place2.name}]
     end
 
-    #TODO: refactor to remove logic from controller to model
-
     # it 'returns the number of days elapsed' do
     #   place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
     #   ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user),

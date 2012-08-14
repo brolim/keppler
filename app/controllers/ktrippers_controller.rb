@@ -18,10 +18,7 @@ class KtrippersController < ApplicationController
     begin
       ktripper = Ktripper.find params[:id]
       where = Place.find params[:where]
-      ktripper.place = where
-      ktripper.visits << Visit.new(:place=>where)
-      ktripper.user = nil
-      ktripper.save
+      ktripper.drop where
     rescue
     end
     render :json=>{}
@@ -31,9 +28,7 @@ class KtrippersController < ApplicationController
     begin
       ktripper = Ktripper.find params[:id]
       user = User.find params[:user]
-      ktripper.user = user
-      ktripper.place = nil
-      ktripper.save
+      ktripper.pickup user
     rescue
     end
     render :json=>{}
