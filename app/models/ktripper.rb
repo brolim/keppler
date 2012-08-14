@@ -5,6 +5,7 @@ class Ktripper
   include Mongoid::Document
 
   field :name, :default=>nil
+  field :img, :default=>nil
   belongs_to :place
   belongs_to :user
   embeds_many :visits

@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
   def index
-    if params['coordinates'].blank? or params['coordinates'].size!=2
+    if params['latitude'].blank? or params['longitude'].blank?
       missing_parameters = true
     elsif params['within'].blank?
       missing_parameters = true
@@ -10,7 +10,8 @@ class PlacesController < ApplicationController
     if missing_parameters
       render :json=>{}
     else
-      nearby_places = Place.nearby_places(params['coordinates'], params['within'].to_f)
+      coordinates = [params[:latitude].to_f, params[:longitude].to_f]
+      nearby_places = Place.nearby_places(coordinates, params['within'].to_f)
       render :json=>nearby_places
     end
   end
