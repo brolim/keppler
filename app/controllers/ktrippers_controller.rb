@@ -1,3 +1,4 @@
+require 'date'
 class KtrippersController < ApplicationController
 
   def index
@@ -29,16 +30,19 @@ class KtrippersController < ApplicationController
       ktripper = Ktripper.find params[:id]
       user = User.find params[:user]
       ktripper.pickup user
+      render :json=>{'success'=>true}
     rescue
+      render :json=>{'success'=>false}
     end
-    render :json=>{}
   end
 
   def history
     ktripper = Ktripper.find params[:id]
     list = []
+    now = Time.new
     ktripper.visits.each do |v|
-      list << {'name'=>v.place.name}
+      list << {'name'=>v.place.name, 'elapsed_days'=>Time.at(now.to_date - v.date.to_date).to_i}
+      # list << {'name'=>v.place.name}
     end
     render :json=>list
   end

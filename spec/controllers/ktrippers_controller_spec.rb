@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
+require 'date'
 
 describe KtrippersController do
 
@@ -100,9 +101,18 @@ describe KtrippersController do
       put :pickup , :id => ktripper.id, :user => 12345
       ktripper.reload
       ktripper.user.should be_nil
+      json = ActiveSupport::JSON.decode(response.body)
+      json.should == {'success'=>false}
     end
 
-    xit 'returns success on json'
+    it 'returns success on json' do
+      user = Factory.create(:user)
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :place=>place)
+      put :pickup , :id => ktripper.id, :user => user.id
+      json = ActiveSupport::JSON.decode(response.body)
+      json.should == {'success'=>true}
+    end
 
     xit 'validates users location against the place'
 
@@ -122,7 +132,7 @@ describe KtrippersController do
       put :drop, :id=>ktripper.id, :where => place.id
       get :history , :id => ktripper.id
       json = ActiveSupport::JSON.decode(response.body)
-      json.should == [{'name'=>place.name}]
+      json.should == [{'name'=>place.name, 'elapsed_days'=>0}]
     end
 
     it 'returns all places dropped' do
@@ -133,18 +143,27 @@ describe KtrippersController do
       put :drop, :id=>ktripper.id, :where => place2.id
       get :history , :id => ktripper.id
       json = ActiveSupport::JSON.decode(response.body)
-      json.should == [{'name'=>place1.name},{'name'=>place2.name}]
+      json.should == [{'name'=>place1.name, 'elapsed_days'=>0},
+                      {'name'=>place2.name, 'elapsed_days'=>0}]
     end
 
-    # it 'returns the number of days elapsed' do
-    #   place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
-    #   ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user),
-    #                             :visits=>[Factory.build(:visit,:place=>where)])
-    #   ktripper.save
-    #   get :history , :id => ktripper.id
-    #   json = ActiveSupport::JSON.decode(response.body)
-    #   json.should == [{'name'=>place.name}]
-    # end
+    it 'returns the number of days elapsed' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user))
+      ktripper.drop place
+      ktripper.drop place
+      ktripper.drop place
+      ktripper.reload
+      ktripper.visits[0].date = Time.new - 1*24*60*60
+      ktripper.visits[1].date = Time.new - 2*24*60*60
+      ktripper.visits[2].date = Time.new - 3*24*60*60
+      ktripper.save
+      get :history , :id => ktripper.id
+      json = ActiveSupport::JSON.decode(response.body)
+      json.should == [{'name'=>place.name, 'elapsed_days'=>1}, 
+                      {'name'=>place.name, 'elapsed_days'=>2}, 
+                      {'name'=>place.name, 'elapsed_days'=>3}]
+    end
 
   end
   

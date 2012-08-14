@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
+require 'date'
 
 describe Ktripper do
 
@@ -17,6 +18,15 @@ describe Ktripper do
       ktripper = Factory.create(:ktripper, :name=>'aaa', :user=> Factory.create(:user))
       ktripper.drop place
       ktripper.user.should be_nil
+    end
+
+    it 'creates a visit history' do
+      place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
+      ktripper = Factory.create(:ktripper, :name=>'aaa')
+      ktripper.drop place
+      ktripper.visits.length.should == 1
+      ktripper.visits[0].place.should == place
+      ktripper.visits[0].date.should == Time.at(Time.new.to_i)
     end
 
 	end

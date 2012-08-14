@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'date'
+
 class Ktripper
   include Mongoid::Document
 
@@ -11,7 +13,7 @@ class Ktripper
 
   def drop where
     self.place = where
-    self.visits << Visit.new(:place=>where)
+    self.visits << Visit.new(:place=>where, :date=>Time.at(Time.new.to_i))
     self.user = nil
     self.save
   end
