@@ -5,6 +5,7 @@ gem 'bson_ext', ">= 1.6.1"
 gem 'mongoid', '>=2.4'
 gem 'mongoid_rails_migrations', '0.0.13'
 gem 'heroku'
+gem 'rb-readline'
 gem 'therubyracer-heroku'
 gem 'coffeebeans'
 gem 'awesome_print'

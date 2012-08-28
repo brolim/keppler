@@ -14,7 +14,7 @@ describe KtrippersController do
     it 'returns an empty json when there is no parameter' do
       get :index
       ktrippers_json = ActiveSupport::JSON.decode(response.body)
-      ktrippers_json.should == {}
+      ktrippers_json.should == []
     end
 
     it 'returns the ktripper who is in the place passed on parameter' do
