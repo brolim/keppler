@@ -7,7 +7,8 @@ class KtrippersController < ApplicationController
     if not params[:latitude].nil? or not params[:longitude].nil?
       coordinates = [params[:latitude].to_f, params[:longitude].to_f]
       Place.nearby_places(coordinates, 2).each do |place|
-        ktrippers += Ktripper.who_are_in(place._id).map{|kt| {:name=>kt.name, :place=>kt.place.name} }
+        ktrippers += Ktripper.who_are_in(place._id).map{|kt| {:name=>kt.name, 
+                        :place=>kt.place.name, :_id=>kt.id, :img=>kt.img} }
       end
     end
 

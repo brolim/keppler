@@ -19,11 +19,13 @@ describe KtrippersController do
 
     it 'returns the ktripper who is in the place passed on parameter' do
       place = Factory.create(:place, :name=>'lugar legalzão', :coordinates=>[10,12])
-      ktripper = Factory.create(:ktripper, :name=>'aaa', :place=>place)
+      ktripper = Factory.create(:ktripper, :name=>'aaa', :place=>place,
+                                :img=>'/the/img.jpg')
 
       get :index, :latitude=>10.002, :longitude=>12.002
       ktrippers_json = ActiveSupport::JSON.decode(response.body)
-      ktrippers_json.should == [{'name'=>'aaa', 'place'=>'lugar legalzão'}]
+      ktrippers_json.should == [{'name'=>'aaa', 'place'=>'lugar legalzão', 
+                                  '_id'=>ktripper.id.to_s, 'img'=>'/the/img.jpg'}]
     end
 
   end
