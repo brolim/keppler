@@ -3,7 +3,13 @@ Keppler::Application.routes.draw do
   root :to => 'landing#landing'
 
   match 'abcdefghijlmnopqrstuvxz/c/u' => 'interesteds#index'
-  resources :interesteds, :only=>[:create]
+  resources :interesteds, :only=>[:create] do
+    collection do
+      get :vote
+      put :doVote
+    end
+  end
+  match 'vote' => 'interesteds#vote'
 
   resources :ktrippers, :only=>[:index] do
     member do

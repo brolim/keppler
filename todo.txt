@@ -19,7 +19,7 @@
 		- ex: [{ _id:1, img:'http://my.img/alien.jpg', name:'João Ajax', place:'Giraffas'}]
 
 * http://keppler.herokuapp.com/ktrippers/:id/pickup.json
-	- Method : POST
+	- Method : PUT
 	- Params : 
 		- Dados do usuário (post) que está pegando e do tripper sendo pego (url).
 		- Ex: {'user' : 1}
@@ -28,13 +28,13 @@
 		- Ex: {success : true}
 
 * http://keppler.herokuapp.com/ktrippers/:id/drop.json
-	- Method : POST
+	- Method : PUT
 	- Params :
 		- identificação do tripper (url) e da venue (post)
 		- ex: {'where':'vn_0002'}
 
 * http://keppler.herokuapp.com/ktrippers/:id/history.json
-	- Method : POST
+	- Method : GET
 	- Params : 
 		- Identificador do tripper (url)
 	- Response :
@@ -46,7 +46,7 @@
 	      ]
 
 * http://keppler.herokuapp.com/users/signin.json
-	- Method : POST
+	- Method : PUT
 	- Params :
 		- Dados de acesso do usuário
 		- Ex: {'email' : 'joao@dasilva.com','pass' : '123456'}
@@ -59,7 +59,7 @@
 				}
 
 * http://keppler.herokuapp.com/places.json
-	- Method : POST
+	- Method : GET
 	- Params :
 		- Latitude e longitude em float
 		- ex: {'latitude':12.34, 'longitude':56.78}

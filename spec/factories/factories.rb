@@ -1,4 +1,5 @@
 # encoding: utf-8
+require 'date'
 
 FactoryGirl.define do
 
@@ -15,5 +16,11 @@ FactoryGirl.define do
   end
 
   factory :visit do
+  end
+
+  factory :gamefyvote, class: GamefyVote do
+    email 'dummy@server.com'
+    option [1,2] 
+    date Time.new
   end
 end
