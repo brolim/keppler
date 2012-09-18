@@ -15,9 +15,13 @@ class InterestedsController < ApplicationController
   def vote
   	@email = params[:email]
 
-  	if GamefyVote.where(:email=>params[:email]).length == 0
-  		GamefyVote.new(:email=>params[:email], 
-  			:option=>findLessUsedOptions(), :date=>Time.new(utc_offset="+00:00")).save
+  	found = GamefyVote.where(:email=>params[:email])
+  	if found.length == 0
+  		@vote = GamefyVote.new(:email=>params[:email], 
+  			:option=>findLessUsedOptions(), :date=>Time.new(utc_offset="+00:00"))
+  		@vote.save
+  	else
+  		@vote = found[0]
   	end
   end
 

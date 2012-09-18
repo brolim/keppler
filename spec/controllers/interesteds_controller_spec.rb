@@ -15,6 +15,7 @@ describe InterestedsController do
 			vote.option.should == [1,2]
 			vote.vote.should == nil
 			vote.date.should == Time.new(utc_offset="+00:00")
+			assigns(:vote).should eq(vote)
 		end
 
 		it 'sorts options 2 and 3 for when 3 has no entry before' do
@@ -26,6 +27,7 @@ describe InterestedsController do
 			vote.option.should == [3,1]
 			vote.vote.should == nil
 			vote.date.should == Time.new(utc_offset="+00:00")
+			assigns(:vote).should eq(vote)
 		end
 
 		it 'sorts the less voted one' do
@@ -36,6 +38,7 @@ describe InterestedsController do
 			size = GamefyVote.all.length
 			vote = GamefyVote.all[size-1]
 			vote.option.should == [2,1]
+			assigns(:vote).should eq(vote)
 		end
 
 		it 'sorts the less voted one' do
@@ -45,6 +48,7 @@ describe InterestedsController do
 			size = GamefyVote.all.length
 			vote = GamefyVote.all[size-1]
 			vote.option.should == [2,3]
+			assigns(:vote).should eq(vote)
 		end
 
 		it 'returns the same option as before' do
@@ -53,7 +57,10 @@ describe InterestedsController do
 			size = GamefyVote.all.length
 			vote = GamefyVote.all[size-1]
 			vote.option.should == [3,1]
+			assigns(:vote).should eq(vote)
 		end
+
+		it 'doesnt know what to do when theres no mail informed'
 
 	end
 
@@ -83,6 +90,8 @@ describe InterestedsController do
 			realvote.reload
 			realvote.vote.should == 2
 		end
+
+		it 'doesnt know what to do when theres no mail informed'
 	end
 
 end

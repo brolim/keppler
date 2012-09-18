@@ -1,4 +1,32 @@
 
+<script type="text/javascript">
+	var option_data = [
+		{
+			number:1,
+			title:'Para o infinito e além',
+			text: 'Nós defendemos que ktrippers devem ter experiências variadas. Nós devemos ajudá-los a conhecer o máximo de novos lugares. Por isso devemos bonificar e reconhecer quem levar mais Ktrippers mais longe.',
+			components:['Mais longe é melhor', 'Domínio da região']
+		},
+		{
+			number:2,
+			title:'Kespecialistas',
+			text: 'Nós defendemos que os Ktrippers querem ter uma experiência especial. Devemos ajudá-los a ir onde eles mais se interessam. Devemos especializar nossos embaixadores para ajudar nessa missão.',
+			components:['Valorizar missões', 'Reconhecimento por mérito']
+		},
+		{
+			number:3,
+			title:'Kesperiências',
+			text: 'Nós defendemos que os Ktrippers querem ter boas experiências. Nós devemos ajudá-los a conhecer os lugares a serem conhecidos. Aqueles que derem boas indicações devem receber o reconhecimento da comunidade.',
+			components:['Opinião é valor', 'Reconhecimento por mérito']
+		},
+	];
+
+	var options = <%= @vote.option %>;
+
+</script>
+
+
+
 <% if @ein %>
 	hey
 <% else %>
