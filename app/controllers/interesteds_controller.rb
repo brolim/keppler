@@ -48,6 +48,7 @@ class InterestedsController < ApplicationController
 
   def doVote
   	vote = nil
+    pp params
   	GamefyVote.where(:email=>params[:email]).each do |v|
   		if v.vote == nil
   			vote = v

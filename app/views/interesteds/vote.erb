@@ -22,23 +22,40 @@
   ];
 
   window.options = <%= @vote.option %>;
+  window.email = "<%= @email %>";
 
   function insert_text() {
-    chosen = [];
+    window.chosen = [];
     window.options.forEach(function(op) {
-      chosen.push(window.option_data[op-1])
+      window.chosen.push(window.option_data[op-1])
     });
 
-    $('.vote_inner_box:eq(0) .title').html(chosen[0].title)
-    $('.vote_inner_box:eq(0) .text').html(chosen[0].text)
+    $('.vote_inner_box:eq(0) .title').html(window.chosen[0].title)
+    $('.vote_inner_box:eq(0) .text').html(window.chosen[0].text)
 
-    $('.vote_inner_box:eq(1) .title').html(chosen[1].title)
-    $('.vote_inner_box:eq(1) .text').html(chosen[1].text)
+    $('.vote_inner_box:eq(1) .title').html(window.chosen[1].title)
+    $('.vote_inner_box:eq(1) .text').html(window.chosen[1].text)
+  }
+
+  function do_vote() {
+    vote = parseInt($(this).attr('vote_for'))
+    $.ajax({
+      url: '/interesteds/doVote',
+      data: {email:window.email, option:window.chosen[vote].number},
+      type: 'PUT',
+      success: thanks
+    });
+  }
+
+  function thanks() {
+    $('#thanks').html('Valeu pelo voto!');
   }
 
   $(function() {
     insert_text();
+    $('.vote_button').click(do_vote);
   });
+
 
 </script>
 
@@ -55,7 +72,7 @@
   .vote_outter_box{
     float:left;
     border-radius: 10px;
-    margin: 60px 50px 30px 50px;
+    margin: 30px 50px 30px 50px;
     width:300px;
     height:300px;
     background: -webkit-gradient(linear, left top, left bottom, from(#355331), to(#85cca4));
@@ -117,6 +134,14 @@
     cursor: pointer;
   }
 
+  #thanks{
+    float:left;
+    width: 900px;
+    height: 30px;
+    text-align: center;
+    margin-top: 5px;
+  }
+
 </style>
 
 <div id="container">
@@ -125,7 +150,8 @@
     Qual deve ser o seu objetivo ao receber um K-Tripper?
   </div>
 
-  
+  <div id="thanks">
+  </div>
   <div id="votes_container">
 
     <div class="vote_outter_box">
@@ -136,7 +162,7 @@
         <div class="text">
           texto 1
         </div>
-        <div class="vote_button">
+        <div class="vote_button" vote_for="0">
           votar nesse
         </div>
       </div>
@@ -150,7 +176,7 @@
         <div class="text">
           texto 2
         </div>
-        <div class="vote_button">
+        <div class="vote_button" vote_for="1">
           votar nesse
         </div>
       </div>
