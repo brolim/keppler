@@ -1,36 +1,188 @@
 
 <script type="text/javascript">
-	var option_data = [
-		{
-			number:1,
-			title:'Para o infinito e além',
-			text: 'Nós defendemos que ktrippers devem ter experiências variadas. Nós devemos ajudá-los a conhecer o máximo de novos lugares. Por isso devemos bonificar e reconhecer quem levar mais Ktrippers mais longe.',
-			components:['Mais longe é melhor', 'Domínio da região']
-		},
-		{
-			number:2,
-			title:'Kespecialistas',
-			text: 'Nós defendemos que os Ktrippers querem ter uma experiência especial. Devemos ajudá-los a ir onde eles mais se interessam. Devemos especializar nossos embaixadores para ajudar nessa missão.',
-			components:['Valorizar missões', 'Reconhecimento por mérito']
-		},
-		{
-			number:3,
-			title:'Kesperiências',
-			text: 'Nós defendemos que os Ktrippers querem ter boas experiências. Nós devemos ajudá-los a conhecer os lugares a serem conhecidos. Aqueles que derem boas indicações devem receber o reconhecimento da comunidade.',
-			components:['Opinião é valor', 'Reconhecimento por mérito']
-		},
-	];
+  window.option_data = [
+    {
+      number:1,
+      title:'Para o infinito e além',
+      text: 'Nós defendemos que ktrippers devem ter experiências variadas. Nós devemos ajudá-los a conhecer o máximo de novos lugares. Por isso devemos bonificar e reconhecer quem levar mais Ktrippers mais longe.',
+      components:['Mais longe é melhor', 'Domínio da região']
+    },
+    {
+      number:2,
+      title:'Kespecialistas',
+      text: 'Nós defendemos que os Ktrippers querem ter uma experiência especial. Devemos ajudá-los a ir onde eles mais se interessam. Devemos especializar nossos embaixadores para ajudar nessa missão.',
+      components:['Valorizar missões', 'Reconhecimento por mérito']
+    },
+    {
+      number:3,
+      title:'Kesperiências',
+      text: 'Nós defendemos que os Ktrippers querem ter boas experiências. Nós devemos ajudá-los a conhecer os lugares a serem conhecidos. Aqueles que derem boas indicações devem receber o reconhecimento da comunidade.',
+      components:['Opinião é valor', 'Reconhecimento por mérito']
+    },
+  ];
 
-	var options = <%= @vote.option %>;
+  window.options = <%= @vote.option %>;
+  window.email = "<%= @email %>";
+
+  function insert_text() {
+    window.chosen = [];
+    window.options.forEach(function(op) {
+      window.chosen.push(window.option_data[op-1])
+    });
+
+    $('.vote_inner_box:eq(0) .title').html(window.chosen[0].title)
+    $('.vote_inner_box:eq(0) .text').html(window.chosen[0].text)
+
+    $('.vote_inner_box:eq(1) .title').html(window.chosen[1].title)
+    $('.vote_inner_box:eq(1) .text').html(window.chosen[1].text)
+  }
+
+  function do_vote() {
+    vote = parseInt($(this).attr('vote_for'))
+    $.ajax({
+      url: '/interesteds/doVote',
+      data: {email:window.email, option:window.chosen[vote].number},
+      type: 'PUT',
+      success: thanks
+    });
+  }
+
+  function thanks() {
+    $('#thanks').html('Valeu pelo voto!');
+  }
+
+  $(function() {
+    insert_text();
+    $('.vote_button').click(do_vote);
+  });
+
 
 </script>
 
 
+<style type="text/css">
+  #container{
+    width:900px;
+    height:675px;
+    margin: 50px auto;
+    background:url(/assets/landing/background.jpg);
+    border-radius: 10px
+  }
 
-<% if @ein %>
-	hey
-<% else %>
-	ho
-<% end %>
+  .vote_outter_box{
+    float:left;
+    border-radius: 10px;
+    margin: 30px 50px 30px 50px;
+    width:300px;
+    height:300px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#355331), to(#85cca4));
+    background: -moz-linear-gradient(top, #355331, #85cca4);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#355331', endColorstr='#85cca4');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#355331', endColorstr='#85cca4')";
+    -webkit-box-shadow: 0px 0px 30px #FFF;
+     -moz-box-shadow: 0px 0px 30px #FFF;
+          box-shadow: 0px 0px 30px #FFF;
+  }
 
-<%= @ein %>
+  .vote_inner_box{
+    float:left;
+    margin: 10px;
+    padding: 10px;
+    width: 260px;
+    height:260px;
+  }
+
+  .disclaimer{
+    float:left;
+    width:800px;
+    margin: 20px 50px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  #votes_container{
+    float:left;
+    width: 800px;
+    margin: 20px 50px;
+  }
+
+  .title{
+    padding: 5px 0px 20px 0px;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    color:#DDD;
+  }
+
+  .text{
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .vote_button{
+    padding: 5px;
+    border-radius: 10px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#25282d), to(#1c5a69));
+    background: -moz-linear-gradient(top, #25282d, #1c5a69);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#25282d', endColorstr='#1c5a69');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#25282d', endColorstr='#1c5a69')";
+    border-radius: 10px;
+    margin: 40px 0px 0px 70px;
+    width: 100px;
+    text-align: center;
+    border: solid 2px white;
+    cursor: pointer;
+  }
+
+  #thanks{
+    float:left;
+    width: 900px;
+    height: 30px;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+</style>
+
+<div id="container">
+
+  <div class="disclaimer">
+    Qual deve ser o seu objetivo ao receber um K-Tripper?
+  </div>
+
+  <div id="thanks">
+  </div>
+  <div id="votes_container">
+
+    <div class="vote_outter_box">
+      <div class="vote_inner_box">
+        <div class="title">
+          titulo 1
+        </div>
+        <div class="text">
+          texto 1
+        </div>
+        <div class="vote_button" vote_for="0">
+          votar nesse
+        </div>
+      </div>
+    </div>
+
+    <div class="vote_outter_box">
+      <div class="vote_inner_box">
+        <div class="title">
+          titulo 2
+        </div>
+        <div class="text">
+          texto 2
+        </div>
+        <div class="vote_button" vote_for="1">
+          votar nesse
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
