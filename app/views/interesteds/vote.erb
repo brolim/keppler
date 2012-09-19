@@ -48,7 +48,7 @@
   }
 
   function thanks() {
-    $('#thanks').html('Valeu pelo voto!');
+    $('#thanks').show();
   }
 
   $(function() {
@@ -135,11 +135,21 @@
   }
 
   #thanks{
-    float:left;
-    width: 900px;
-    height: 30px;
+  	display: none;
+  	float: left;
     text-align: center;
     margin-top: 5px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#355331), to(#85cca4));
+    background: -moz-linear-gradient(top, #355331, #85cca4);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#355331', endColorstr='#85cca4');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#355331', endColorstr='#85cca4')";
+    -webkit-box-shadow: 0px 0px 30px #FFF;
+     -moz-box-shadow: 0px 0px 30px #FFF;
+          box-shadow: 0px 0px 30px #FFF;
+    border-radius: 10px;
+    margin-left: 33%;
+    width:300px;
+    height:30px;
   }
 
 </style>
@@ -147,11 +157,15 @@
 <div id="container">
 
   <div class="disclaimer">
-    Qual deve ser o seu objetivo ao receber um K-Tripper?
+    Qual é o seu objetivo ao receber um K-Tripper?   
   </div>
 
-  <div id="thanks">
-  </div>
+	<center>
+    	<div id="thanks">
+		  	Valeu pelo voto!
+		</div>
+    </center>
+  
   <div id="votes_container">
 
     <div class="vote_outter_box">
@@ -163,7 +177,7 @@
           texto 1
         </div>
         <div class="vote_button" vote_for="0">
-          votar nesse
+          Gosto desse
         </div>
       </div>
     </div>
@@ -177,7 +191,7 @@
           texto 2
         </div>
         <div class="vote_button" vote_for="1">
-          votar nesse
+          Gosto desse
         </div>
       </div>
     </div>
