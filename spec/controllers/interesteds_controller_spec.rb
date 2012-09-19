@@ -91,6 +91,19 @@ describe InterestedsController do
 			realvote.vote.should == 2
 		end
 
+		it 'saves on a new vote for the person if none is free' do
+			vote = Factory.create(:gamefyvote, :email=>'test@server.com', 
+							:vote=>1)
+			
+			put :doVote, :option=>2, :email=>'test@server.com'
+			size = GamefyVote.all.length
+			size.should == 2
+			vote.reload
+			vote.vote.should == 1
+			realvote.reload
+			realvote.vote.should == 2
+		end
+
 		it 'doesnt know what to do when theres no mail informed'
 	end
 
