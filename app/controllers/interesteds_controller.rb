@@ -26,10 +26,12 @@ class InterestedsController < ApplicationController
   end
 
   def findLessUsedOptions
-  	count = {1=>0, 2=>0, 3=>0}
+  	count = {0=>0, 1=>0, 2=>0, 3=>0}
   	GamefyVote.all.each do |c|
-  		count[c.option[0]] += 1
-  		count[c.option[1]] += 1
+      if c != nil and c.option != nil
+    		count[c.option[0]] += 1
+    		count[c.option[1]] += 1
+      end
   	end
   	
   	first = 1
